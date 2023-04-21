@@ -34,6 +34,8 @@ This sections assumes that your React app works when run locally, and that your 
 	- This is because the build & deploy process will create a bunch of files, **write** those files into the `gh-pages` branch, and tell GitHub Pages to pay attention to the newly-created or updated content. So, we need the GitHub Actions workflow to have **write** permissions.
 4. Create a file in your repository named `cd.yml` or some other file name - as long as you know that it's the continuous deployment workflow file, and that it must be a `.yml` file. This file must be within a `workflows` folder inside of a `.github` folder. So, a path to the new file would be something like `.github/workflows/cd.yml` as shown in this project's contents.
 	- This file: [./.github/workflows/cd.yml](./.github/workflows/cd.yml)
-5. Let the GitHub Actions workflows process. At the time of writing, there are two: the one we've added as a YML file, and one that GitHub will run automatically to feed the `gh-pages` branch in as GitHub Pages content.
-6. Find your deployment status in the repository's Environments section on GitHub.
+5. Give that new `cd.yml` file the contents found in our own - this is the workflow that readies the React app for deployment.
+	- This file, again: [./.github/workflows/cd.yml](./.github/workflows/cd.yml)
+6. Let the GitHub Actions workflows process. At the time of writing, there are two: the one we've added as a YML file, and one that GitHub will run automatically to feed the `gh-pages` branch in as GitHub Pages content.
+7. Find your deployment status in the repository's Environments section on GitHub.
 	- You can sort out a direct link to view your repository's deployments from this structure: `https://github.com/SomeGitHubUsername/SomeRepositoryName/deployments/`
