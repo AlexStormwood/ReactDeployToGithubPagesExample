@@ -1,70 +1,36 @@
-# Getting Started with Create React App
+# React Deploy To GitHub Pages Example
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project shows a setup that automates deployment of a React app to GitHub Pages.
 
-## Available Scripts
+## Steps - Setting Up The Project
 
-In the project directory, you can run:
+This section contains two sets of instructions - one for if you're applying this content to a not-yet-started new React project, and one for if you're applying this content to an existing React project.
 
-### `npm start`
+### Steps - New Project
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+1. Create a repo with fresh, empty branches - one `main` and  one `gh-pages` branch.
+2. Push both branches up to GitHub.
+3. Create your React app.
+	- If you're creating the React app in the root directory of the repo, and the repository's local clone has a folder name that is in all lower case letters, you can run `npx create-react-app .` to create a new React project in that current terminal directory. 
+	- If you're creating the React app in a subfolder of the repo, just run `npx create-react-app reactprojectname`  as per normal. Remember the name of the folder containing the React app's `package.json` file!
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
+### Steps - Existing Project
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Add a branch named `gh-pages` to your repo.
+2. Push the branch to GitHub.
+3. Continue to the section titled "Steps - Implementing The Workflow".
 
-### `npm run build`
+## Steps - Implementing The Workflow
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+This sections assumes that your React app works when run locally, and that your repository has a branch named `gh-pages` in it.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1. Go to the repository's settings page. We want to find the `Actions` section, and then the `General` section within that, and then the `Workflow permissions` section within that.
+	- The URL for that page should follow this type of structure: `https://github.com/SomeGitHubUsername/SomeRepositoryName/settings/actions`
+2. Enable or click on the setting that says `Read and write permissions` - this should be a toggle or radio button that unselects the `Read repository contents and packages permissions`. 
+	- This is because the build & deploy process will create a bunch of files, **write** those files into the `gh-pages` branch, and tell GitHub Pages to pay attention to the newly-created or updated content. So, we need the GitHub Actions workflow to have **write** permissions.
+3. Create a file in your repository named `cd.yml` or some other file name - as long as you know that it's the continuous deployment workflow file, and that it must be a `.yml` file. This file must be within a `workflows` folder inside of a `.github` folder. So, a path to the new file would be something like `.github/workflows/cd.yml` as shown in this project's contents.
+	- This file: [./.github/workflows/cd.yml](./.github/workflows/cd.yml)
+4. Let the GitHub Actions workflows process. At the time of writing, there are two: the one we've added as a YML file, and one that GitHub will run automatically to feed the `gh-pages` branch in as GitHub Pages content.
+5. Find your deployment status in the repository's Environments section on GitHub.
+	- You can sort out a direct link to view your repository's deployments from this structure: `https://github.com/SomeGitHubUsername/SomeRepositoryName/deployments/`
