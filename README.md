@@ -10,7 +10,8 @@ This section contains two sets of instructions - one for if you're applying this
 
 1. Create a repo with fresh, empty branches - one `main` and  one `gh-pages` branch.
 2. Push both branches up to GitHub.
-3. Create your React app.
+3. Clone your repo from GitHub down to your development machine.
+4. Within your cloned repo on your computer, create your React app.
 	- If you're creating the React app in the root directory of the repo, and the repository's local clone has a folder name that is in all lower case letters, you can run `npx create-react-app .` to create a new React project in that current terminal directory. 
 	- If you're creating the React app in a subfolder of the repo, just run `npx create-react-app reactprojectname`  as per normal. Remember the name of the folder containing the React app's `package.json` file!
 
@@ -24,6 +25,8 @@ This section contains two sets of instructions - one for if you're applying this
 ## Steps - Implementing The Workflow
 
 This sections assumes that your React app works when run locally, and that your repository has a branch named `gh-pages` in it.
+
+These steps must be completed in the main/master branch of your repository, NOT the `gh-pages` branch!
 
 1. Add a key named `homepage` to your project's `package.json` file. The value of this key is the URL of your intended deployment domain.  
 	- If you just want to keep things "standard" and use a GitHub Pages domain name, keep in mind that it will use this structure by default: `https://somegithubusername.github.io/somerepositoryname/`.
