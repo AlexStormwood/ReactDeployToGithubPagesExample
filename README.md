@@ -39,6 +39,8 @@ These steps must be completed in the main/master branch of your repository, NOT 
 	- This file: [./.github/workflows/cd.yml](./.github/workflows/cd.yml)
 5. Give that new `cd.yml` file the contents found in our own - this is the workflow that readies the React app for deployment.
 	- This file, again: [./.github/workflows/cd.yml](./.github/workflows/cd.yml)
-6. Let the GitHub Actions workflows process. At the time of writing, there are two: the one we've added as a YML file, and one that GitHub will run automatically to feed the `gh-pages` branch in as GitHub Pages content.
-7. Find your deployment status in the repository's Environments section on GitHub.
+	- If your default, main branch is not named `main` then just change that value on line 6 of that file from `main` to whatever branch name you're using.
+6. Push your main/master/whatever-you're-working-in branch to GitHub. The workflow now exists in the repository and is detected by GitHub. When its conditions are met (on all pushes to the main branch), the workflow will run.
+7. Let the GitHub Actions workflows process. At the time of writing, there are two: the one we've added as a YML file, and one that GitHub will run automatically to feed the `gh-pages` branch in as GitHub Pages content.
+8. Find your deployment status in the repository's Environments section on GitHub.
 	- You can sort out a direct link to view your repository's deployments from this structure: `https://github.com/SomeGitHubUsername/SomeRepositoryName/deployments/`
